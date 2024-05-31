@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>672</width>
+    <height>755</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true">font: 600 13pt &quot;HSE Sans&quot;;</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt; font-weight:700;&quot;&gt;Hotel Manager&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">font: 24pt &quot;HSE Sans&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Choose the information about rooms or bookings below</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="comboBox">
+      <item>
+       <property name="text">
+        <string>Rooms</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Bookings</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableView" name="tableView">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>1000000</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="push_SearchRoom">
+      <property name="text">
+       <string>Search for rooms</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>672</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
