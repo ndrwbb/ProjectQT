@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/new">
+        <file>bookings_set.csv</file>
+        <file>rooms_set.csv</file>
+    </qresource>
+</RCC>
