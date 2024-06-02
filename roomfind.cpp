@@ -12,7 +12,7 @@ roomFind::roomFind(QWidget *parent)
     , ui(new Ui::roomFind)
 {
     ui->setupUi(this);
-    QIntValidator *intValidator = new QIntValidator(0, 10000, this); // You can adjust the range as needed
+    QIntValidator *intValidator = new QIntValidator(0, 500, this);
     ui->lineEdit_minPrice->setValidator(intValidator);
     ui->lineEdit_maxPrice->setValidator(intValidator);
 
@@ -82,8 +82,23 @@ void roomFind::on_pushFindRoom_clicked()
         QMessageBox::warning(this, "empty2Warning", "Choose at least one type of room.");
     }
 
-    // The beginning of the comparsion
-    QList<QStringList> comparsion = {{}};
+    QDate checkIn = ui->calendarCheckIn->selectedDate();
+    QDate checkOut = ui->calendarCheckOut->selectedDate();
+    int minPrice = ui->lineEdit_minPrice->text().toInt();
+    int maxPrice = ui->lineEdit_maxPrice->text().toInt();
+    QStringList roomTypes;
+    if (ui->checkBoxSingle->isChecked()) roomTypes.append("Single");
+    if (ui->checkBoxDouble->isChecked()) roomTypes.append("Double");
+    if (ui->checkBoxSuite->isChecked()) roomTypes.append("Suite");
+    if (ui->checkBoxFamily->isChecked()) roomTypes.append("Family");
+    int guestsNumber = ui->comboBoxNumGuests->currentText().toInt();
+    bool safe = ui->checkBoxSafe->isChecked();
+    bool miniBar = ui->checkBoxMiniBar->isChecked();
+    bool isMerged = ui->checkBoxMerged->isChecked();
+
+    emit filterRooms(checkIn, checkOut, minPrice, maxPrice, roomTypes, guestsNumber, safe, miniBar, isMerged);
+
+    accept();
 }
 
 
@@ -92,9 +107,7 @@ void roomFind::handleReturnPressed()
     QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender());
     if (lineEdit) {
         QString text = lineEdit->text();
-        // Handle the text as needed without clearing it
         qDebug() << "Entered text:" << text;
-        // Set focus back to the lineEdit to prevent text from disappearing
         lineEdit->setFocus();
     }
 }
@@ -104,35 +117,14 @@ void roomFind::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
         QLineEdit *lineEdit = qobject_cast<QLineEdit *>(focusWidget());
         if (lineEdit) {
-            // If Enter is pressed while a QLineEdit has focus, handle it
             QString text = lineEdit->text();
             qDebug() << "Entered text:" << text;
             lineEdit->setFocus();
-            return; // Do not propagate the event further
+            return;
         }
     }
-    QDialog::keyPressEvent(event); // Call the base class implementation
+    QDialog::keyPressEvent(event);
 }
 
 
-// void roomFind::on_lineEdit_minPrice_returnPressed()
-// {
-//     QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender());
-//     if (lineEdit) {
-//         QString text = lineEdit->text();
-//         // Handle the text as needed without clearing it
-//         qDebug() << "Entered text:" << text;
-//     }
-// }
-
-
-// void roomFind::on_lineEdit_maxPrice_returnPressed()
-// {
-//     QLineEdit *lineEdit = qobject_cast<QLineEdit*>(sender());
-//     if (lineEdit) {
-//         QString text = lineEdit->text();
-//         // Handle the text as needed without clearing it
-//         qDebug() << "Entered text:" << text;
-//     }
-// }
 

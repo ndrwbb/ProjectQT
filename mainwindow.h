@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QTableView>
 #include <QPushButton>
+#include <QTableWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,8 +27,23 @@ private slots:
 
     void on_push_SearchRoom_clicked();
 
+    void applyRoomFilters(const QDate &checkIn, const QDate &checkOut, int minPrice, int maxPrice, const QStringList &roomTypes, int guestsNumber, bool safe, bool miniBar, bool isMerged);
+
+    void on_comboBoxRoomOptions_currentIndexChanged(int index);
+
+    QList<QStringList> sortRooms(int index);
+
+    void on_pushButton_clicked();
+
 private:
     void loadFile();
+
+    void setupUI();
+
+    void displayRoomsDataset(const QList<QStringList> &dataset);
+
+    void filterRooms(const QDate &checkIn, const QDate &checkOut, int minPrice, int maxPrice, const QStringList &roomTypes, int guestsNumber, bool safe, bool miniBar, bool isMerged);
+
     Ui::MainWindow *ui;
 };
 

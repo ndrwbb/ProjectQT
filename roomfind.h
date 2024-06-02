@@ -15,13 +15,26 @@ public:
     explicit roomFind(QWidget *parent = nullptr);
     ~roomFind();
 
+signals:
+    void filterRooms(const QDate &checkIn, const QDate &checkOut, int minPrice, int maxPrice, const QStringList &roomTypes, int guestsNumber, bool safe, bool miniBar, bool isMerged);
+
+
 private slots:
+    void on_pushResetFilters_clicked();
+
     void on_pushFindRoom_clicked();
 
-    void on_pushEraseFilters_clicked();
+    void handleReturnPressed();
+
+    // void on_lineEdit_minPrice_returnPressed();
+
+    // void on_lineEdit_maxPrice_returnPressed();
+
+    void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::roomFind *ui;
+
 };
 
 #endif // ROOMFIND_H
