@@ -36,5 +36,3 @@ By integrating these features into a single app, we can transform hotel manageme
 - **C++ compiler**
 - **Qt** for developing the application
 
-## References
-
